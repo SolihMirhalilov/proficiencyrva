@@ -5,9 +5,11 @@ import logo2 from "../assets/logopart.png";
 
 const logos = [Logo, logo2, Logo];
 
+
+
 const TeamSlider = () => {
   return (
-    <section className="mt-10 bg-gray-100 w-full mb-16 py-10">
+    <section className="mt-24 bg-gray-100 w-full mb-16 py-10 ">
       <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-2xl font-semibold mb-8">OUR PARTNERS</h1>
 

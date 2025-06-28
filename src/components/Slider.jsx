@@ -68,21 +68,22 @@ export default function Slider() {
 
   return (
     <motion.div
-      className="w-full py-16 max-w-7xl mx-auto px-4"
+      className="w-full py-10 px-4 max-w-[950px] mx-auto "
       initial={{ opacity: 0.7, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1.5 }}
     >
-      <h1 className="text-center text-2xl md:text-4xl font-bold text-gray-800 mb-12">
+      <h1 className="text-center text-2xl md:text-4xl font-bold text-gray-800 mb-6">
         Meet Our Instructors
       </h1>
 
-      {/* <div className="flex gap-8 justify-center">
+      {/* Горизонтальный скролл */}
+      <div className="flex gap-4 overflow-x-auto pb-4 scroll-smooth">
         {visiblePeople.map((person, i) => (
           <motion.div
             key={i}
-            className="w-72 p-5 bg-white rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 flex flex-col items-center"
+            className="min-w-[230px] sm:min-w-[260px] bg-white rounded-xl shadow-md p-4 flex-shrink-0 hover:scale-105 transition-transform duration-300"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.2 }}
@@ -90,20 +91,20 @@ export default function Slider() {
             <img
               src={person.img}
               alt={person.name}
-              className="w-48 h-48 object-cover rounded-full border-4 border-blue-400 shadow-md"
+              className="w-32 h-32 mx-auto object-cover rounded-full border-4 border-blue-400 shadow-md"
             />
-            <p className="mt-4 text-xl font-semibold text-gray-900">
+            <p className="mt-4 text-center text-lg font-semibold text-gray-900">
               {person.name}
             </p>
-            <p className="text-blue-600 text-sm font-medium mt-1">
+            <p className="text-blue-600 text-center text-sm font-medium mt-1">
               {person.description1}
             </p>
-            <p className="text-gray-500 text-sm text-center mt-1">
+            <p className="text-gray-500 text-center text-sm mt-1">
               {person.description2}
             </p>
           </motion.div>
         ))}
-      </div> */}
+      </div>
     </motion.div>
   );
 }
