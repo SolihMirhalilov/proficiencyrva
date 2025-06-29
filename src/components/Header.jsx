@@ -6,6 +6,12 @@ import { Link } from "react-router-dom";
 
 export default function Header() {
 
+    const handleScroll = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   const [Click , setClick] = useState("")
   
 
@@ -76,13 +82,18 @@ export default function Header() {
                     </p>
                   </li>
                   <li>
-                    <p className="text-white   px-1 py-3  text-lg font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p
+                    onClick={() => handleScroll("about")}
+                    className="text-white cursor-pointer   px-1 py-3  text-lg font-semibold hover:scale-105 hover: hover: transition duration-300">
                       About
                     </p>
                   </li>
                   <li>
-                    <p className="text-white   px-1 py-3  text-lg font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p 
+                     onClick={() => handleScroll("contact")}
+                    className="text-white cursor-pointer  px-1 py-3  text-lg font-semibold hover:scale-105 hover: hover: transition duration-300">
                       Contact
+                      
                     </p>
                   </li>
                 </ul>
@@ -91,33 +102,33 @@ export default function Header() {
           </nav>
 
           <div 
-          className={`${!Click ? "flex" : "hidden"}`}
+          className={`  ${!Click ? "hidden" : "flex"}`}
           >
-                            <ul className="font-medium flex justify-between items-center ">
+                            <ul className=" absolute font-medium flex justify-between items-center w-full px-2 ">
                   <li>
-                    <p className="text-white  text-sm font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p className="text-white  text-xs font-semibold hover:scale-105 hover: hover: transition duration-300">
                       Home
                     </p>
                   </li>
                   <li>
-                    <p className="text-white  text-sm font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p className="text-white  text-xs font-semibold hover:scale-105 hover: hover: transition duration-300">
                     <Link to="/posts" >
                       News
                     </Link>
                     </p>
                   </li>
                   <li>
-                    <p className="text-white  text-sm font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p className="text-white  text-xs font-semibold hover:scale-105 hover: hover: transition duration-300">
                       Projects
                     </p>
                   </li>
                   <li>
-                    <p className="text-white  text-sm font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p className="text-white  text-xs font-semibold hover:scale-105 hover: hover: transition duration-300">
                       About
                     </p>
                   </li>
                   <li>
-                    <p className="text-white  text-sm font-semibold hover:scale-105 hover: hover: transition duration-300">
+                    <p className="text-white  text-xs font-semibold hover:scale-105 hover: hover: transition duration-300">
                       Contact
                     </p>
                   </li>

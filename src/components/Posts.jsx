@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function Posts() {
+  const navigate = useNavigate()
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -17,8 +20,8 @@ function Posts() {
   };
 
   return (
-    <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Посты</h1>
+    <div className="p-6 max-w-6xl mx-auto mt-44 cursor-pointer" onClick={() => navigate("/posts")} >
+      <h1 className="text-2xl font-bold mb-4 text-center">Posts</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
           <div
@@ -31,8 +34,8 @@ function Posts() {
               className="w-full h-40 object-cover"
             />
             <div className="p-4">
-              <h2 className="text-lg font-semibold">{post.title}</h2>
-              <p className="text-sm text-gray-600">{post.description}</p>
+              <h2 className="text-lg font-semibold line-clamp-2">{post.title}</h2>
+              <p className="text-sm text-gray-600 line-clamp-3">{post.description}</p>
             </div>
           </div>
         ))}

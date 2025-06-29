@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaLanguage } from "react-icons/fa";
+import { FaLanguage, FaCheck, FaGlobe, FaMobileAlt } from "react-icons/fa";
+import { MdSchool, MdFeedback } from "react-icons/md";
 
 export default function Sing() {
   const [form, setForm] = useState({
@@ -32,6 +33,29 @@ export default function Sing() {
     },
   };
 
+  const features = [
+    {
+      text: "Proven Proficiency Method",
+      icon: <FaCheck className="text-blue-100 text-xl" />,
+    },
+    {
+      text: "Certified, Experienced Teachers",
+      icon: <MdSchool className="text-blue-100 text-xl" />,
+    },
+    {
+      text: "Prepare for IELTS & CEFR",
+      icon: <FaGlobe className="text-blue-100 text-xl" />,
+    },
+    {
+      text: "Learn Anywhere — Phone or Laptop",
+      icon: <FaMobileAlt className="text-blue-100 text-xl" />,
+    },
+    {
+      text: "Daily Support & Feedback",
+      icon: <MdFeedback className="text-blue-100 text-xl" />,
+    },
+  ];
+
   return (
     <motion.section
       className="max-w-[1140px] m-auto px-4"
@@ -51,51 +75,58 @@ export default function Sing() {
         className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10"
         variants={containerVariants}
       >
-        {/* Левая карточка */}
+        {/* Enhanced Left Card */}
         <motion.div
-          className="relative bg-gradient-to-tr from-blue-600 to-blue-300 rounded-xl shadow-xl overflow-hidden"
+          className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 rounded-xl shadow-2xl overflow-hidden p-8"
           variants={itemVariants}
         >
-          {/* Размытый фон-круг */}
-          <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full blur-2xl z-0"></div>
+          {/* Decorative elements */}
+          <div className="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl z-0"></div>
+          <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl z-0"></div>
+          
+          {/* Content container */}
+          <div className="relative z-10 flex flex-col items-center h-full">
+            {/* Icon with animated ring */}
+            <div className="relative">
+              <div className="absolute -inset-4 rounded-full bg-white/20 animate-pulse"></div>
+              <FaLanguage className="text-white text-6xl p-3 relative z-10" />
+            </div>
 
-          {/* Иконка */}
-          <FaLanguage className="text-white text-6xl mx-auto mt-10 relative z-10" />
+            {/* Title and subtitle */}
+            <h3 className="text-center text-2xl md:text-3xl text-white font-bold mt-6">
+              Start Speaking English with Confidence!
+            </h3>
+            <p className="text-center text-blue-100 text-lg font-medium mt-3 mb-8">
+              Learn English easily — from beginner to fluent. Online and offline.
+            </p>
 
-          {/* Заголовок и текст */}
-          <h3 className="text-center text-2xl text-white font-bold pt-4 relative z-10">
-            Start Speaking English with Confidence!
-          </h3>
-          <p className="text-center text-white text-lg font-semibold pt-3 px-6 relative z-10">
-            Learn English easily — from beginner to fluent. Online and offline.
-          </p>
+            {/* Enhanced feature list */}
+            <ul className="w-full space-y-4">
+              {features.map((feature, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 }}
+                  className="flex items-start gap-4 p-3 bg-white/10 rounded-lg backdrop-blur-sm"
+                >
+                  <div className="p-2 bg-white/20 rounded-full">
+                    {feature.icon}
+                  </div>
+                  <span className="text-white font-medium text-lg">
+                    {feature.text}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
 
-          {/* Анимированный список */}
-          <ul className="ml-10 pt-10 text-left text-white font-medium space-y-3 pr-6 text-[17px] pb-6 relative z-10">
-            {[
-              "📚 Proven Proficiency Method",
-              "👨‍🏫 Certified, Experienced Teachers",
-              "🎯 Prepare for IELTS & CEFR",
-              "📱 Learn Anywhere — Phone or Laptop",
-              "✅ Daily Support & Feedback",
-            ].map((item, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="flex items-center my-3 gap-2 text-xl"
-              >
-                {item}
-              </motion.li>
-            ))}
-          </ul>
-
-
+      
+            <div className="mt-8 w-full h-1 bg-white/20 rounded-full"></div>
+          </div>
         </motion.div>
 
-        {/* Правая форма */}
+
         <motion.div variants={itemVariants}>
           <div className="flex flex-col gap-4">
             <label className="text-sm font-medium">Your Name</label>
@@ -153,4 +184,3 @@ export default function Sing() {
     </motion.section>
   );
 }
-

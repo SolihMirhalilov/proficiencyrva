@@ -5,6 +5,8 @@ import News from "./Pages/News";
 import MyAdmin from "./Pages/MyAdmin";
 import LayoutPanel from "./LayoutPanel.jsx";
 import ProtectedRoute from "./Pages/ProtectedRoute.jsx"
+import Footer from "./components/Footer.jsx";
+import LayoutPostis from "./LayoutPostis.jsx";
 
 export default function App() {
   return (
@@ -12,11 +14,16 @@ export default function App() {
       {/* Главная часть */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Main />} />
-        <Route path="posts" element={<News />} />
       </Route>
 
+<Route path="/" element={<LayoutPostis/>}>
+    <Route path="posts" element={<News />} />
+</Route>     
+
+{/* <Route path="" */}
 
       <Route path="/myAdmin" element={<MyAdmin />} />
+
 
 
       <Route
