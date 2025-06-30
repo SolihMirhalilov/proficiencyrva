@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 function Posts() {
   const navigate = useNavigate()
   const [posts, setPosts] = useState([]);
-
+  
   useEffect(() => {
     fetch("http://127.0.0.1:8000/posts/")
       .then((res) => res.json())

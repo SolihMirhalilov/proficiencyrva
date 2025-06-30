@@ -167,25 +167,40 @@ export default function PostPage() {
         </div>
 
         {/* Модалка */}
-        {selectedPost && (
-          <div className="fixed inset-0 bg-white/30 backdrop-blur-sm flex justify-center items-center z-50">
-            <div className="bg-white p-6 rounded-lg w-11/12 md:w-2/3 lg:w-1/2 max-h-[90vh] overflow-y-auto relative shadow-xl">
-              <button
-                className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-xl"
-                onClick={closeModal}
-              >
-                ✕
-              </button>
-              <h2 className="text-2xl font-bold mb-2">{selectedPost.title}</h2>
-              <img
-                src={formatImagePath(selectedPost.image?.split(",")[0])}
-                alt={selectedPost.title}
-                className="w-full h-64 object-cover rounded mb-4"
-              />
-              <p className="text-gray-700">{selectedPost.description}</p>
-            </div>
-          </div>
-        )}
+{selectedPost && (
+  <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
+    {/* Закрыть */}
+    <button
+      onClick={() => setSelectedPost(null)}
+      className="absolute top-4 right-6 text-5xl text-gray-600 hover:text-red-500 z-50"
+    >
+      &times;
+    </button>
+
+    {/* Контент */}
+    <div className="w-[60%] h-[100%] m-auto pt-24 flex flex-col">
+      {/* Верхняя часть с картинкой */}
+      <div className="w-[100%] h-[100%] md:h-[60vh] overflow-hidden">
+        <img
+          src={formatImagePath(selectedPost.image?.split(",")[0])}
+          alt={selectedPost.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Текстовая часть */}
+      <div className="p-6 max-w-5xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">{selectedPost.title}</h2>
+        <p className="text-gray-700 text-lg leading-relaxed whitespace-pre-line">
+          {selectedPost.description}
+        </p>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
       </div>
 
 

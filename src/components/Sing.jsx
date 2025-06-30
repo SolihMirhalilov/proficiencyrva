@@ -11,6 +11,32 @@ export default function Sing() {
     message: "",
   });
 
+ const handleSubmit = async () => {
+  const { name, surname, phone, message } = form;
+
+  const text = `📝 Yangi ariza%0A%0A👤 Ismi: ${encodeURIComponent(name)}%0A👥 Familiyasi: ${encodeURIComponent(surname)}%0A📞 Telefon: ${encodeURIComponent(phone)}%0A✉️ Xabar: ${encodeURIComponent(message || "yo'q")}`;
+
+  const chatId = "-1002665216344";
+  const token = "7990311905:AAF4ijTNEJQsxRbWGgVYBHy99bcA53fcrIQ";
+
+  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${text}`;
+
+  try {
+    const res = await fetch(url);
+    if (res.ok) {
+      alert("✅ Сообщение отправлено!");
+      setForm({ name: "", surname: "", phone: "", message: "" });
+    } else {
+      alert("❌ Не удалось отправить.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("❌ Ошибка при подключении к Telegram.");
+  }
+};
+
+
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -23,6 +49,14 @@ export default function Sing() {
       },
     },
   };
+
+  const featureBgColors = [
+    "bg-red-400/60",
+    "bg-yellow-400/60",
+    "bg-green-400/60",
+    "bg-pink-400/60",
+    "bg-cyan-400/60",
+  ];
 
   const itemVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -77,13 +111,13 @@ export default function Sing() {
       >
         {/* Enhanced Left Card */}
         <motion.div
-          className="relative bg-gradient-to-br from-blue-600 via-blue-500 to-blue-400 rounded-xl shadow-2xl overflow-hidden p-8"
+          className="relative bg-gradient-to-br from-orange-500  via-amber-400  to-yellow-300 rounded-xl shadow-2xl overflow-hidden p-8"
           variants={itemVariants}
         >
           {/* Decorative elements */}
           <div className="absolute -top-20 -left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl z-0"></div>
           <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-white/5 rounded-full blur-3xl z-0"></div>
-          
+
           {/* Content container */}
           <div className="relative z-10 flex flex-col items-center h-full">
             {/* Icon with animated ring */}
@@ -97,7 +131,8 @@ export default function Sing() {
               Start Speaking English with Confidence!
             </h3>
             <p className="text-center text-blue-100 text-lg font-medium mt-3 mb-8">
-              Learn English easily — from beginner to fluent. Online and offline.
+              Learn English easily — from beginner to fluent. Online and
+              offline.
             </p>
 
             {/* Enhanced feature list */}
@@ -109,7 +144,9 @@ export default function Sing() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15 }}
-                  className="flex items-start gap-4 p-3 bg-white/10 rounded-lg backdrop-blur-sm"
+                  className={`flex items-start gap-4 p-3 rounded-lg backdrop-blur-sm ${
+                    featureBgColors[index % featureBgColors.length]
+                  }`}
                 >
                   <div className="p-2 bg-white/20 rounded-full">
                     {feature.icon}
@@ -121,11 +158,9 @@ export default function Sing() {
               ))}
             </ul>
 
-      
             <div className="mt-8 w-full h-1 bg-white/20 rounded-full"></div>
           </div>
         </motion.div>
-
 
         <motion.div variants={itemVariants}>
           <div className="flex flex-col gap-4">
@@ -174,7 +209,7 @@ export default function Sing() {
 
             <button
               className="mt-4 bg-blue-600 hover:bg-blue-700 transition text-white font-semibold py-3 rounded-xl"
-              onClick={() => console.log(form)}
+              onClick={handleSubmit}
             >
               Submit Application
             </button>
@@ -182,5 +217,8 @@ export default function Sing() {
         </motion.div>
       </motion.div>
     </motion.section>
+
+
+
   );
 }
