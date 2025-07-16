@@ -21,7 +21,7 @@ function Posts() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto mt-44 cursor-pointer" onClick={() => navigate("/posts")} >
-      <h1 className="text-2xl font-bold mb-4 text-center">Posts</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center"></h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {posts.map((post) => (
           <div
