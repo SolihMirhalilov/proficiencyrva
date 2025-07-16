@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Logo from "../assets/Logo.png";
+import Logo from "../assets/logo.png"
 
 function Navbar() {
   const [Click, setClick] = useState("");
@@ -135,9 +135,7 @@ export default function PostPage() {
     setSelectedPost(post);
   };
 
-  const closeModal = () => {
-    setSelectedPost(null);
-  };
+
   return (
     <>
       <Navbar />
