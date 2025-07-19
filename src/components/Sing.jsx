@@ -2,6 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLanguage, FaCheck, FaGlobe, FaMobileAlt } from "react-icons/fa";
 import { MdSchool, MdFeedback } from "react-icons/md";
+import { useEffect } from "react";
+import img1 from "../assets/eng.jpg"
+import img2 from "../assets/eng1.jpg"
+import img3 from "../assets/eng3.jpg"
+
 
 export default function Sing() {
   const [form, setForm] = useState({
@@ -10,6 +15,26 @@ export default function Sing() {
     phone: "",
     message: "",
   });
+
+  const slides = [
+  {
+    title: "Welcome to Proficiency RVA",
+    text: "Learn English with experienced teachers and modern methods.",
+    image: img1 ,
+  },
+  {
+    title: "Courses for Everyone",
+    text: "From kids to professionals – we have a course for you.",
+    image: img2 ,
+  },
+  {
+    title: "IELTS & CEFR Preparation",
+    text: "Achieve high results with our expert exam prep programs.",
+    image: img3,
+  },
+];
+
+
 
  const handleSubmit = async () => {
   const { name, surname, phone, message } = form;
@@ -67,28 +92,21 @@ export default function Sing() {
     },
   };
 
-  const features = [
-    {
-      text: "Proven Proficiency Method",
-      icon: <FaCheck className="text-blue-100 text-xl" />,
-    },
-    {
-      text: "Certified, Experienced Teachers",
-      icon: <MdSchool className="text-blue-100 text-xl" />,
-    },
-    {
-      text: "Prepare for IELTS & CEFR",
-      icon: <FaGlobe className="text-blue-100 text-xl" />,
-    },
-    {
-      text: "Learn Anywhere — Phone or Laptop",
-      icon: <FaMobileAlt className="text-blue-100 text-xl" />,
-    },
-    {
-      text: "Daily Support & Feedback",
-      icon: <MdFeedback className="text-blue-100 text-xl" />,
-    },
-  ];
+    const [current, setCurrent] = useState(0);
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 5000); // авто-прокрутка каждые 5 сек
+    return () => clearInterval(interval);
+  }, []);
+
 
   return (
     <motion.section
@@ -111,7 +129,7 @@ export default function Sing() {
       >
         {/* Enhanced Left Card */}
         <motion.div
-          className="relative bg-gradient-to-br from-orange-500  via-amber-400  to-yellow-300 rounded-xl shadow-2xl overflow-hidden p-8"
+          className="relative bg-white bg-gradient-to-br rounded-xl shadow-xl overflow-hidden p-8"
           variants={itemVariants}
         >
           {/* Decorative elements */}
@@ -120,50 +138,54 @@ export default function Sing() {
 
           {/* Content container */}
           <div className="relative z-10 flex flex-col items-center h-full">
-            {/* Icon with animated ring */}
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-full bg-white/20 animate-pulse"></div>
-              <FaLanguage className="text-white text-6xl p-3 relative z-10" />
-            </div>
 
-            {/* Title and subtitle */}
-            <h3 className="text-center text-2xl md:text-3xl text-white font-bold mt-6">
-              Start Speaking English with Confidence!
-            </h3>
-            <p className="text-center text-blue-100 text-lg font-medium mt-3 mb-8">
-              Learn English easily — from beginner to fluent. Online and
-              offline.
-            </p>
 
-            {/* Enhanced feature list */}
-            <ul className="w-full space-y-4">
-              {features.map((feature, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 }}
-                  className={`flex items-start gap-4 p-3 rounded-lg backdrop-blur-sm ${
-                    featureBgColors[index % featureBgColors.length]
-                  }`}
-                >
-                  <div className="p-2 bg-white/20 rounded-full">
-                    {feature.icon}
-                  </div>
-                  <span className="text-white font-medium text-lg">
-                    {feature.text}
-                  </span>
-                </motion.li>
-              ))}
-            </ul>
+          <h1 className="text-3xl font-bold text-gray-800 my-4">Courses for Everyone</h1>
+          <p className="text-xl text-gray-400 font-medium text-left">From absolute beginners to advanced learners – we have the right course for you.
 
-            <div className="mt-8 w-full h-1 bg-white/20 rounded-full"></div>
+</p>
+
+
+
+           <div className="relative w-full mt-24 max-w-3xl mx-auto overflow-hidden rounded-xl shadow-lg">
+      <img
+        src={slides[current].image}
+        alt={slides[current].title}
+        className="w-full h-96 object-cover"
+      />
+      <div className="absolute bottom-0 left-0 bg-black bg-opacity-50 text-white p-4 w-full">
+        <h2 className="text-xl font-bold">{slides[current].title}</h2>
+        <p>{slides[current].text}</p>
+      </div>
+
+      <button
+        onClick={prevSlide}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-3xl text-white"
+      >
+        ‹
+      </button>
+      <button
+        onClick={nextSlide}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-3xl text-white"
+      >
+        ›
+      </button>
+    </div>
+
+
+    
+
+
+
+
+
+
+
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants}>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 rounded-3xl border-3  p-2">
             <label className="text-sm font-medium">Your Name</label>
             <input
               type="text"
